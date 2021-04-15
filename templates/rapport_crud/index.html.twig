@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RapportFinal index{% endblock %}
+
+{% block body %}
+    <h1>RapportFinal index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Plagiat</th>
+                <th>Fichier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rapport_final in rapport_finals %}
+            <tr>
+                <td>{{ rapport_final.id }}</td>
+                <td>{{ rapport_final.plagiat }}</td>
+                <td>{{ rapport_final.fichier }}</td>
+                <td>
+                    <a href="{{ path('rapport_crud_show', {'id': rapport_final.id}) }}">show</a>
+                    <a href="{{ path('rapport_crud_edit', {'id': rapport_final.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('rapport_crud_new') }}">Create new</a>
+{% endblock %}

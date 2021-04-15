@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RapportFinal{% endblock %}
+
+{% block body %}
+    <h1>RapportFinal</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rapport_final.id }}</td>
+            </tr>
+            <tr>
+                <th>Plagiat</th>
+                <td>{{ rapport_final.plagiat }}</td>
+            </tr>
+            <tr>
+                <th>Fichier</th>
+                <td>{{ rapport_final.fichier }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('rapport_crud_index') }}">back to list</a>
+
+    <a href="{{ path('rapport_crud_edit', {'id': rapport_final.id}) }}">edit</a>
+
+    {{ include('rapport_crud/_delete_form.html.twig') }}
+{% endblock %}
