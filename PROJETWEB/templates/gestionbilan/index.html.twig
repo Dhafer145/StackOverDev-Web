@@ -1,0 +1,68 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}gestion des bilans{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="card shadow border-left-success py-2">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span><a href="{{ path('visualisation_bilan') }}">Bilans</a></span>
+                                </div>
+                                <div class="text-dark font-weight-normal"><span>Visualiser les bilans periodiques renseignés des etudiants</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-eye fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="card shadow border-left-warning py-2">
+                    <div class="card-body">
+                        <div class="row align-items-center no-gutters">
+                            <div class="col mr-2">
+                                <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span><a href="{{ path('questions_index') }}">Questions</a> </span>
+                                </div>
+                                <div class="text-dark font-weight-normal"><span>Visualiser et manipuler les questions des bilans</span></div>
+                            </div>
+                            <div class="col-auto"><i class="fas fa-pen fa-2x text-gray-300"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-6">
+                <div class="card shadow mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="text-primary font-weight-bold m-0">Statistique renseignement des bilans</h6>
+                    </div>
+                    <div class="card-body center-block">
+                        <div class="chart-area">
+                            <div class="chartjs-size-monitor">
+                                <div class="chartjs-size-monitor-expand">
+                                    <div class=""></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink">
+                                    <div class=""></div>
+                                </div>
+                            </div>
+                            <canvas data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Debut Stage&quot;,&quot;Milieu Stage&quot;,&quot;Fin Stage&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"
+                                    width="480" height="320" class="chartjs-render-monitor"
+                                    style="display: block; width: 480px; height: 320px;"></canvas>
+                        </div>
+                        <div class="text-center small mt-4"><span class="mr-2"><i
+                                        class="fas fa-circle text-primary"></i>&nbsp;Debut Stage</span><span
+                                    class="mr-2"><i
+                                        class="fas fa-circle text-success"></i>&nbsp;Milieu Stage</span><span
+                                    class="mr-2"><i class="fas fa-circle text-info"></i>&nbsp;Fin Stage</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

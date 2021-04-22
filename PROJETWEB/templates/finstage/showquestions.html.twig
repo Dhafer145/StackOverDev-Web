@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Questions !{% endblock %}
+
+{% block body %}
+    <section class="content-block" style="background-color:#ffffff;">
+        <div class="container text-center">
+            {% for bilan in bilans %}
+                {% if bilan.IndexPeriode==3 %}
+                    <div>
+                        <span class="numberstep"><i class="fa fa-book"></i></span>
+                        <h1>{{ bilan.TitreDescriptif }}</h1><br>
+                    </div>
+                    {% for question in bilan.QuestionsBilan %}
+                        <div class="text-justify"><h4 class="text-muted">•{{ question.quest }}</h4></div><br>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            <div class="text-justify" style="font-weight: bold"><p class="text-danger">Les questions d'evaluation : Veuillez vous noter de 1 à 10 et expliquer pourquoi vous êtes-vous attribué cette note </p></div><br>
+            <span class="badge badge-danger"><h5>DEADLINE : 23eme semaine de periode de stage</h5></span>
+        </div>
+    </section>
+{% endblock %}

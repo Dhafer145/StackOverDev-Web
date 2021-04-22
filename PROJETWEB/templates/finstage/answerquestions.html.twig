@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Remplir bilan{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Create new Reponses</h1>
+        <form name="reponses" method="post" action={{ "/bilanfin" }}>
+            <br>
+            <div class="text-center">
+                <span class="numberstep"><i class="fa fa-book"></i></span>
+                <h1>Fin de Stage </h1><br>
+            </div>
+            <div class="text-justify" style="font-weight: bold"><p class="text-danger">Les questions d'evaluation : Veuillez vous noter de 1 à 10 et expliquer pourquoi vous êtes-vous attribué cette note </p></div>
+            {% for question in questions %}
+                {% if question.IndexPeriode==3 or question.IndexPeriode==0 %}
+                    <br>
+                    <div class="form-group row">
+                        <label>{{ question.quest }}</label>
+                        <input type="text" class="form-control" name={{ question.id }}>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        <a href="{{ path('finstage') }}">Go back !</a>
+    </div>
+{% endblock %}

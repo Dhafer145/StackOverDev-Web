@@ -1,0 +1,16 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Edit Questions{% endblock %}
+
+{% block body %}
+    <div class="text-right">
+        <button type="button" class="btn btn-primary"><a href="{{ path('questions_index') }}" class="text-white">retour à la liste</a></button>
+    </div>
+
+    <h1>Modifier la question</h1>
+    <div class="text-center">
+        {{ include('questions/_form.html.twig', {'button_label': 'Modifier'}) }} <br>
+
+        {{ include('questions/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Bilans des etudiants{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">Liste des etudiants </p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label>
+                                <input type="search" class="form-control form-control-sm" aria-controls="dataTable"
+                                       placeholder="Search"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                        <tr>
+                            <th>Etudiant</th>
+                            <th>Debut de Stage</th>
+                            <th>Milieu de Stage</th>
+                            <th>Fin de Stage</th>
+                        </tr>
+                        </thead>
+                        {% for user in users %}
+                        <tbody>
+                        <tr>
+                            <td>{{ user.getUserName }}</td>
+                            <td><span class="badge badge-success">Rempli</span></td>
+                            <td><span class="badge badge-danger">Non Rempli</span></td>
+                            <td><span class="badge badge-success">Non Rempli </span></td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        {% for user in users %}
+
+        {% endfor %}
+
+{% endblock %}

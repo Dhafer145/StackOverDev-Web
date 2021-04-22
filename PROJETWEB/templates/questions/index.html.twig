@@ -1,0 +1,39 @@
+{% extends 'baseback.html.twig' %}
+
+
+{% block title %}Questions index{% endblock %}
+
+{% block body %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Questions</th>
+                <th>IndexPeriode</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>{{ question.quest }}</td>
+                <td>{{ question.IndexPeriode }}</td>
+                <td>
+                    <a href="{{ path('questions_show', {'id': question.id}) }}">Afficher</a>
+                    <a href="{{ path('questions_edit', {'id': question.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="{{ path('questions_new') }}"><i class="fas fa-pen  text-white-50"></i>&nbsp;Ajouter une question</a>
+    </div>
+{% endblock %}

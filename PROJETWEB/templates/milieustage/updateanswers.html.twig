@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reponses{% endblock %}
+
+{% block body %}
+
+    <br><br>
+    <br>
+    <div class="container">
+        <h1 class="text-center">Modifier vos reponses</h1>
+
+        <form name="reponses" method="post">
+
+            {% for reponse in reponses %}
+
+                {% if reponse.getQuestionDesReponses().IndexPeriode==0 or reponse.getQuestionDesReponses().IndexPeriode==2 %}
+                    <div class="form-group row">
+                        <label>{{ reponse.getQuestionDesReponses().quest }}</label>
+                        <input type="text" class="form-control" name={{ reponse.id }} value={{ reponse.rep }}>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

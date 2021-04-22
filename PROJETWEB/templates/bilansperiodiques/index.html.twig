@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BilansPeriodiquesController!{% endblock %}
+
+{% block body %}
+    <header class="item header margin-top-0">
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="text-homeimage">
+                            <div class="maintext-image" data-scrollreveal="enter top over 1.5s after 0.1s">
+                                Bilans Periodiques
+                            </div>
+                            <div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.3s">
+                                à renseigner obligatoirement !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- STEPS =============================-->
+    <div class="item content">
+        <div class="container toparea">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="col editContent">
+                        <span class="numberstep"><i class="fa fa-laptop"></i></span>
+                        <h3 class="numbertext"><a href="{{ path('debutstage') }}"> Bilan Debut de Stage</a></h3>
+                        <p>
+                            Veuillez remplir ce bilan avant la fin de la 6eme semaine de votre periode de stage
+                        </p>
+                    </div>
+                    <!-- /.col-md-4 -->
+                </div>
+                <!-- /.col-md-4 col -->
+                <div class="col-md-4 editContent">
+                    <div class="col">
+                        <span class="numberstep"><i class="fa fa-laptop"></i></span>
+                        <h3 class="numbertext"><a href="{{ path('milieustage') }}">Bilan de Milieu de Stage</a></h3>
+                        <p>
+                            Veuillez remplir ce bilan avant la fin de la 14eme semaine de votre periode de stage
+                        </p>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.col-md-4 col -->
+                <div class="col-md-4 editContent">
+                    <div class="col">
+                        <span class="numberstep"><i class="fa fa-laptop"></i></span>
+                        <h3 class="numbertext"><a href="{{ path('finstage') }}">Bilan de Fin de Stage</a></h3>
+                        <p>Veuillez remplir ce bilan avant la fin de la 23eme semaine de votre periode de stage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
