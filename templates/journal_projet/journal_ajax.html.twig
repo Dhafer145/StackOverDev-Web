@@ -1,0 +1,16 @@
+{% for journal_projet in journal_projets %}
+    <tr>
+        <td>{{ journal_projet.etudiantjp.username }}</td>
+        <td>{{ journal_projet.date ? journal_projet.date|date('Y-m-d') : '' }}</td>
+        <td>{{ journal_projet.tache }}</td>
+        <td>{{ journal_projet.avis }}</td>
+        <td>
+            <a href="{{ path('journal_projet_show', {'id': journal_projet.id}) }}">show</a>
+            <a href="{{ path('journal_projet_edit', {'id': journal_projet.id}) }}">edit</a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="5">no records found</td>
+    </tr>
+{% endfor %}

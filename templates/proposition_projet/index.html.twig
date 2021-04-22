@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition Projet {% endblock %}
+
+{% block body %}
+    <h1>Projets proposés</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom du sujet</th>
+                <th>Cahier de charge</th>
+
+                <th>Description</th>
+                <th>Commentaire</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proposition_projet in proposition_projets %}
+            <tr>
+                <td>{{ proposition_projet.id }}</td>
+                <td>{{ proposition_projet.nomSujet }}</td>
+                <td>{{ proposition_projet.cahierCharge }}</td>
+                <td>{{ proposition_projet.description }}</td>
+                <td>
+                    <a href="{{ path('proposition_projet_show', {'id': proposition_projet.id}) }}">afficher</a>
+                    <a href="{{ path('proposition_projet_edit', {'id': proposition_projet.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('proposition_projet_new') }}">Create new</a>
+{% endblock %}

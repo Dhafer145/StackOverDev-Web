@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plan de Travail {% endblock %}
+
+{% block body %}
+    <h1>Plan de Travail </h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Backlog</th>
+            <th>Sprints</th>
+            <th>Validation</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for plan_travail in plan_travails %}
+            <tr>
+                <td>{{ plan_travail.id }}</td>
+                <td>{{ plan_travail.backlog }}</td>
+                <td>{{ plan_travail.sprints }}</td>
+                <td>{{ plan_travail.validation }}</td>
+
+                <td>
+                    <a href="{{ path('plan_travail_show', {'id': plan_travail.id}) }}">show</a>
+                </td>
+                <td>
+                    <a href="{{ path('valider_plan', {'id':plan_travail.id}) }}" class="btn btn-primary" style="margin-left: 12px;">
+                        valider</a>
+
+                    <a href="{{ path('refuser_plan', {'id':plan_travail.id}) }}" class="btn btn-warning" style="margin-left: 12px;">
+                        refuser
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

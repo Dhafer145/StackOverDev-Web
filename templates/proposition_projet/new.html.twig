@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition de projet{% endblock %}
+
+{% block body %}
+    <h1>Proposition de Projet</h1>
+
+    {{ include('proposition_projet/_form.html.twig') }}
+
+    <a href="{{ path('proposition_projet_index') }}">back to list</a>
+{% endblock %}

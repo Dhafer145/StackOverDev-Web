@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="">
+    {% block css%}
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700') }}" rel="stylesheet">
+        <link href="{{ asset('https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700') }}" rel="stylesheet">
+    {% endblock %}
+    <title>{% block title %}Esprit PFE{% endblock %}</title>
+</head>
+<body>
+
+
+<!-- HEADER =============================-->
+<header class="item header margin-top-0">
+    <div class="wrapper">
+        <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+                    <a href="index.html" class="navbar-brand brand"> Esprit PFE </a>
+                </div>
+                <div id="navbar-collapse-02" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="propClone"><a href="{{ path('proposition_projet_new') }}">Proposer un projet</a></li>
+                        {#  {% if app.user=='' %} #}
+                        <li class="propClone"><a href="{{ path('compte_rendu_new') }}">Compte rendu etudiant</a>
+                            {#  {% else %} #}
+                        <li class="propClone"><a href="{{ path('compte_rendu_index_encadrant') }}">Compte Rendu encadrant</a>
+                            {#  {% endif %} #}
+                        <li class="propClone"><a href="{{ path('plan_travail_new') }}">Plan travail</a></li>
+                        <li class="propClone"><a href="{{ path('plan_travail_index_encadrant') }}">Plan de travail encadrant</a></li>
+                        <li class="propClone"><a href="{{ path('journal_projet_index') }}">journal de stage</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="text-homeimage">
+                        <div class="maintext-image" data-scrollreveal="enter top over 1.5s after 0.1s">
+                            Esprit PFE
+                        </div>
+                        <div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.3s">
+                            Se former autrement
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- STEPS =============================-->
+<div class="item content">
+    <div class="container toparea">
+        <div>
+
+            <section class="item content">
+                {% block body %}
+
+                {% endblock %}
+            </section>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- CALL TO ACTION =============================-->
+<section class="content-block" style="background-color:#00bba7;">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="item" data-scrollreveal="enter top over 0.4s after 0.1s">
+                    <h1 class="callactiontitle"> ESPRIT PFE <span class="callactionbutton"><i class="fa fa-gift"></i> </span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER =============================-->
+<div class="footer text-center">
+    <div class="container">
+        <div class="row">
+            <p class="footernote">
+                Connect with StackOverDev
+            </p>
+            <ul class="social-iconsfooter">
+                <li><a href="#"><i class="fa fa-phone"></i></a></li>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+            </ul>
+            <p>
+                &copy; 2021 ESPRIT PFE<br/>
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS =============================-->
+
+{% block js %}
+    <script src="{{ asset('js/jquery-.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/anim.js') }}"></script>
+    <script>
+        //----HOVER CAPTION---//
+        jQuery(document).ready(function ($) {
+            $('.fadeshop').hover(
+                function(){
+                    $(this).find('.captionshop').fadeIn(150);
+                },
+                function(){
+                    $(this).find('.captionshop').fadeOut(150);
+                }
+            );
+        });
+    </script>
+{% endblock %}
+
+</body>
+
+
+
+</html>

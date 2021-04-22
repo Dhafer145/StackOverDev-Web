@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte Rendu {% endblock %}
+
+{% block body %}
+    <h1>Compte Rendu </h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>nom etudiant</th>
+            <th>Fichier</th>
+
+            <th>Commentaire</th>
+            <th>validation</th>
+            <th>actions</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for compte_rendu in compte_rendus %}
+            <tr>
+                <td>{{ compte_rendu.etudiantcr.username }}</td>
+                <td>{{ compte_rendu.fichier }}</td>
+
+                <td>{{ compte_rendu.commentairetud }}</td>
+                <td>{{ compte_rendu.validationcr }}</td>
+
+                <td>
+                    <a href="{{ path('consulter_cr_show', {'id': compte_rendu.id}) }}">show</a>
+                </td>
+            <td>
+                <a href="{{ path('valider_compte_rendu', {'id':compte_rendu.id}) }}" class="btn btn-primary" style="margin-left: 12px;">
+                valider</a>
+
+                <a href="{{ path('refuser_compte_rendu', {'id':compte_rendu.id}) }}" class="btn btn-warning" style="margin-left: 12px;">
+                    refuser
+                </a>
+            </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('consulter_cr_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+{{ form_row(form.imageFile1) }}
+{{ form_row(form.imageFile2) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

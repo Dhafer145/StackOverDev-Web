@@ -1,0 +1,21 @@
+
+
+{{ form_start(form) }}
+
+
+
+<div class="form-group">
+    <label for="">Insérer votre compte rendu</label>
+    {{ form_widget(form.imageFile) }}
+    <label for="">Commentaire</label>
+    {{ form_widget(form.commentairetud) }}
+    <label for="">Etudiant</label>
+    {{ form_widget(form.etudiantcr) }}
+
+
+</div>
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+

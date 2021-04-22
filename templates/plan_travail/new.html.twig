@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PlanTravail{% endblock %}
+
+{% block body %}
+    <h1>Create new PlanTravail</h1>
+
+    {{ include('plan_travail/_form.html.twig') }}
+
+    <a href="{{ path('plan_travail_index') }}">back to list</a>
+{% endblock %}

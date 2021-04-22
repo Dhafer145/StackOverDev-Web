@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte Rendu{% endblock %}
+
+{% block body %}
+    <h1>Compte Rendu</h1>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Fichier</th>
+                <td>{{ compte_rendu.fichier }}</td>
+            </tr>
+
+            <tr>
+                <th>Commentairet</th>
+                <td>{{ compte_rendu.commentairetud }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('consulter_cr_index') }}">back to list</a>
+
+    <a href="{{ path('consulter_cr_edit', {'id': compte_rendu.id}) }}">edit</a>
+
+    {{ include('consulter_cr/_delete_form.html.twig') }}
+{% endblock %}

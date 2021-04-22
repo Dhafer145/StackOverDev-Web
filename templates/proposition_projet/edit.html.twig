@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit PropositionProjet{% endblock %}
+
+{% block body %}
+    <h1>Editer la Proposition Projet</h1>
+
+    {{ include('proposition_projet/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('proposition_projet_index') }}">back to list</a>
+
+    {{ include('proposition_projet/_delete_form.html.twig') }}
+{% endblock %}

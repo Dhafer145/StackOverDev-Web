@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projets proposés{% endblock %}
+
+{% block body %}
+    <h1>Proposition de Projet </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Nom du sujet</th>
+                <th>Cahier de charge</th>
+
+                <th>Description</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for proposition_projet in proposition_projets %}
+            <tr>
+
+                <td>{{ proposition_projet.nomSujet }}</td>
+                <td>{{ proposition_projet.cahierCharge }}</td>
+
+                <td>{{ proposition_projet.description }}</td>
+
+                <td>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

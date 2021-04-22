@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PlanTravail{% endblock %}
+
+{% block body %}
+    <h1>PlanTravail</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ plan_travail.id }}</td>
+            </tr>
+            <tr>
+                <th>Backlog</th>
+                <td>{{ plan_travail.backlog }}</td>
+            </tr>
+            <tr>
+                <th>Sprints</th>
+                <td>{{ plan_travail.sprints }}</td>
+            </tr>
+            <tr>
+                <th>Validation</th>
+                <td>{{ plan_travail.validation }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ plan_travail.commentaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('plan_travail_index') }}">back to list</a>
+
+    <a href="{{ path('plan_travail_edit', {'id': plan_travail.id}) }}">edit</a>
+
+    {{ include('plan_travail/_delete_form.html.twig') }}
+{% endblock %}

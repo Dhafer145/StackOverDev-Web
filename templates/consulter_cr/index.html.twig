@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte Rendu {% endblock %}
+
+{% block body %}
+    <h1>Compte Rendu </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Fichier</th>
+
+                <th>Commentaire</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for compte_rendu in compte_rendus %}
+            <tr>
+
+                <td>{{ compte_rendu.fichier }}</td>
+
+                <td>{{ compte_rendu.commentairetud }}</td>
+
+                <td>
+                    <a href="{{ path('consulter_cr_show', {'id': compte_rendu.id}) }}">show</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('consulter_cr_new') }}">Create new</a>
+{% endblock %}

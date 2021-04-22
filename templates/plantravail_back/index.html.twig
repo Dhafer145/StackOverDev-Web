@@ -1,0 +1,35 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Plan de Travail {% endblock %}
+
+{% block body %}
+    <h1>Plan de travail </h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Backlog</th>
+            <th>Sprints</th>
+            <th>Validation</th>
+
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for plan_travail in plan_travails %}
+            <tr>
+                <td>{{ plan_travail.id }}</td>
+                <td>{{ plan_travail.backlog }}</td>
+                <td>{{ plan_travail.sprints }}</td>
+                <td>{{ plan_travail.validation }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{{ form_start(form) }}
+
+
+
+
+
+<div class="form-group">
+
+    <label for="">Sujet</label>
+
+    <td>
+        {{ form_widget(form.nom_sujet) }}
+    </td>
+
+    <td class="form-control"> {{form_widget(form.nom_sujet)}}</td>
+    <td class="form-control "> {{form_errors(form.nom_sujet)}}</td>
+
+    <label for="">Insérer votre cahier de charge</label>
+
+    {{ form_widget(form.imageFile) }}
+    <label for="">décrire votre projet</label>
+
+    {{ form_widget(form.description) }}
+
+    <label for="">Etudiant</label>
+    {{ form_widget(form.etudiantpp) }}
+
+
+</div>
+
+
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
