@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Questions;
+use App\Entity\Searchbyindex;
 use App\Form\QuestionsType;
+use App\Form\SearchType;
 use App\Repository\QuestionsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,13 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionsController extends AbstractController
 {
     /**
-     * @Route("/menuquestions", name="questions_index", methods={"GET"})
+     * @Route("/menuquestions", name="questions_index", methods={"GET","POST"})
      */
-    public function index(QuestionsRepository $questionsRepository): Response
+    public function index(Request $request)
     {
-        return $this->render('questions/index.html.twig', [
-            'questions' => $questionsRepository->findAll(),
-        ]);
+        $searchbyindex = new Searchbyindex();
+        $form = $this->createForm(SearchType::class,$searchbyindex);
+        $form->handleRequest($request);
+
+        $question= [];
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $IndexPeriode = $searchbyindex->getIndexPeriode();
+            if ($IndexPeriode!="")
+                $question= $this->getDoctrine()->getRepository(Questions::class)->findBy(['IndexPeriode' => $IndexPeriode] );
+            else
+                $question= $this->getDoctrine()->getRepository(Questions::class)->findAll();
+        }
+        return $this->render('questions/index.html.twig', [ 'form' =>$form->createView(),
+            'questions' => $question]);
     }
 
     /**
