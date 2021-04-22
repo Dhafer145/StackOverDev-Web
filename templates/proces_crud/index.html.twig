@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProcesVerbal index{% endblock %}
+
+{% block body %}
+    <h1>ProcesVerbal</h1>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Membre_reunion</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proces_verbal in proces_verbals %}
+            <tr>
+                <td>{{ proces_verbal.id }}</td>
+                <td>{{ proces_verbal.date ? proces_verbal.date|date('Y-m-d') : '' }}</td>
+                <td>{{ proces_verbal.membreReunion }}</td>
+                <td>{{ proces_verbal.Description }}</td>
+
+                <td>
+                    <a href="{{ path('proces_c_r_u_d_show', {'id': proces_verbal.id}) }}" class = "btn btn-dark">AFFICHER</a>
+                    <a href="{{ path('proces_c_r_u_d_edit', {'id': proces_verbal.id}) }}" class = "btn btn-dark-">EDITER</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('proces_c_r_u_d_new') }}">Ajouter un commentaire</a>
+{% endblock %}

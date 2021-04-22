@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendez Vous{% endblock %}
+
+{% block body %}
+    <h1>Rendez Vous</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ rendez_vou.id }}</td>
+            </tr>
+            <tr>
+                <th>User_name</th>
+                <td>{{ rendez_vou.userName }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ rendez_vou.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Raison</th>
+                <td>{{ rendez_vou.raison }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('rendez_vous_c_r_u_d_index') }}">Back</a>
+
+    <a href="{{ path('rendez_vous_c_r_u_d_edit', {'id': rendez_vou.id}) }}">Edit</a>
+
+    {{ include('rendez_vous_crud/_delete_form.html.twig') }}
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Proces{% endblock %}
+
+{% block body %}
+    <h1>Ajouter Proces</h1>
+    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+    {{form_start(form)}}
+    {{ form_widget(form) }}
+    <button type ="submit" class="btn btn-success">Ajouter</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('proces_c_r_u_d_index') }}">Back</a>
+{% endblock %}
