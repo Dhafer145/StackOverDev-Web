@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evaluation index{% endblock %}
+
+{% block body %}
+    <h1>Evaluations mi-parcours</h1>
+
+    date:
+    <a href="{{ path('datetridesc')}}"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    <a href="{{ path('datetriasc')}}"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+
+                <th>Encadrant</th>
+                <th>Etudiant</th>
+                <th>Date de remplissage</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evaluation in evaluations %}
+            <tr>
+                <td>{{ evaluation.id }}</td>
+
+
+                <td>{{ evaluation.getIdEncEntreprise().getUserName() }}</td>
+                <td>{{ evaluation.getEvalEtudiant().getUserName() }}</td>
+
+                <td>{{ evaluation.dateremp ? evaluation.dateremp|date('Y-m-d') : '' }}</td>
+
+                <td>
+                    <a href="{{ path('evaluation_show', {'id': evaluation.id}) }}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('evaluation_edit', {'id': evaluation.id}) }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('evaluation_new') }}">Ajouter une evaluation mi-parcours</a>
+{% endblock %}

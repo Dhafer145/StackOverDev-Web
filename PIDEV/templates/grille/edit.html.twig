@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Grille{% endblock %}
+
+{% block body %}
+    <h1>Edit Grille</h1>
+
+    {{ include('grille/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('grille_index') }}">back to list</a>
+
+    {{ include('grille/_delete_form.html.twig') }}
+{% endblock %}

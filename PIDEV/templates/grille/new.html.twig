@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Grille{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une grille d'evaluation</h1>
+
+    {{ include('grille/_form.html.twig') }}
+
+    <a href="{{ path('grille_index') }}">back to list</a>
+{% endblock %}

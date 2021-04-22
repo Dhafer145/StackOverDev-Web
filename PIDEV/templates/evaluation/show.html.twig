@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evaluation{% endblock %}
+
+{% block body %}
+    <h1>Evaluation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evaluation.id }}</td>
+            </tr>
+            <tr>
+                <th>Date de remplissage</th>
+                <td>{{ evaluation.dateremp ? evaluation.dateremp|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Le stagiaire est-il ponctuel ? </th>
+                <td>{{ evaluation.ponctualite ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire 1</th>
+                <td>{{ evaluation.comm1 }}</td>
+            </tr>
+            <tr>
+                <th>D’après vous, est-il déjà bien intégré parmi les membres de votre service ?</th>
+                <td>{{ evaluation.integration ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire 2</th>
+                <td>{{ evaluation.comm2 }}</td>
+            </tr>
+            <tr>
+                <th>La quantité de travail fournie est elle satisfaisante ?</th>
+                <td>{{ evaluation.travail ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire 3</th>
+                <td>{{ evaluation.comm3 }}</td>
+            </tr>
+            <tr>
+                <th>Possède-t-il les compétences techniques nécessaires pour son travail ?</th>
+                <td>{{ evaluation.competence ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire 4</th>
+                <td>{{ evaluation.comm4 }}</td>
+            </tr>
+            <tr>
+                <th>Etes-vous globalement satisfait du début de ce stage ?</th>
+                <td>{{ evaluation.eg ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire 5</th>
+                <td>{{ evaluation.comm5 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('evaluation_index') }}">back to list</a>
+
+    <a href="{{ path('evaluation_edit', {'id': evaluation.id}) }}">edit</a>
+
+    {{ include('evaluation/_delete_form.html.twig') }}
+{% endblock %}

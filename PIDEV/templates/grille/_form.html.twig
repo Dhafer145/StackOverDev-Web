@@ -1,0 +1,121 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+
+
+
+<div>
+        <label for="">Choisir l'encadrant academique</label>
+        <td> {{form_widget(form.enc_academique)}}</td>
+        <td class="form-control"> {{form_widget(form.enc_academique)}}</td>
+        <td class="form-control "> {{form_errors(form.enc_academique)}}</td>
+</div>
+<div>
+        <label for="">Choisir l'etudiant</label>
+        <td> {{form_widget(form.grille_etudiant)}}</td>
+        <td class="form-control"> {{form_widget(form.grille_etudiant)}}</td>
+        <td class="form-control "> {{form_errors(form.grille_etudiant)}}</td>
+</div>
+
+
+<table class="table">
+        <thead>
+        <tr>
+                <th><center>Question</center></th>
+                <th><center>Note</center></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+                <td>Comprendre et intégrer les enjeux et la stratégie de l’entreprise</td>
+                <td style="margin-left: 20px;">
+                        <div style="margin-left: 20px;">{{form_widget(form.q1)}}</div>
+                        <div style="margin-left: 20px;">{{form_errors(form.q1)}}</div>
+                </td>
+        </tr>
+
+        <tr>
+                <td>Analyser et/ou chercher les solutions à un problème de conception, de réalisation, d’amélioration de produit</td>
+                <td style="margin-left: 20px;">
+                        <div style="margin-left: 20px;">{{form_widget(form.q2)}}</div>
+                        <div style="margin-left: 20px;">{{form_errors(form.q2)}}</div>
+                </td>
+        </tr>
+
+        <tr>
+                <td>Conduire un projet de création, de conception, de réalisation, d’amélioration de produit, de système ou de service</td>
+                <td style="margin-left: 20px;">
+                        <div style="margin-left: 20px;">{{form_widget(form.q3)}}</div>
+                        <div style="margin-left: 20px;">{{form_errors(form.q3)}}</div>
+                </td>
+        </tr>
+
+        <tr>
+                <td>Mettre en œuvre sa maîtrise scientifique ou technique au sein de l’organisation</td>
+                <td style="margin-left: 20px;">
+                        <div style="margin-left: 20px;">{{form_widget(form.q4)}}</div>
+                        <div style="margin-left: 20px;">{{form_errors(form.q4)}}</div>
+                </td>
+        </tr>
+
+        <tr>
+                <td>Organiser sa mission et manager les ressources</td>
+                <td style="margin-left: 20px;">
+                        <div style="margin-left: 20px;">{{form_widget(form.q5)}}</div>
+                        <div style="margin-left: 20px;">{{form_errors(form.q5)}}</div>
+                </td>
+        </tr>
+
+        <tr>
+                <td>Qualité et présentation du document</td>
+                <td style="margin-left: 20px;">
+                        <div style="margin-left: 20px;">{{form_widget(form.q6)}}</div>
+                        <div style="margin-left: 20px;">{{form_errors(form.q6)}}</div>
+                </td>
+        </tr>
+
+        <tr>
+                <td>Qualité de la présentation orale</td>
+                <td style="margin-left: 20px;">
+                        <div style="margin-left: 20px;">{{form_widget(form.q7)}}</div>
+                        <div style="margin-left: 20px;">{{form_errors(form.q7)}}</div>
+                </td>
+        </tr>
+
+        <tr>
+                <td>Qualité de l’argumentation</td>
+                <td style="margin-left: 20px;">
+                        <div style="margin-left: 20px;">{{form_widget(form.q8)}}</div>
+                        <div style="margin-left: 20px;">{{form_errors(form.q8)}}</div>
+                </td>
+        </tr>
+
+
+        </tbody>
+</table>
+
+<center><div>A (5points)     B (4 points)     C (2 points)     D (1 point)</div></center>
+<br>
+<center><button class="btn" style="text-align: center">{{ button_label|default('Total') }}</button></center>
+<br>
+<center>
+<div>
+        <label for="">Mention</label>
+        <td class="form-control"> {{form_widget(form.mention)}}</td>
+        <td class="form-control "> {{form_errors(form.mention)}}</td>
+</div>
+</center>
+
+<center>
+<div>
+        <label for="">Note</label>
+        <td class="form-control"> {{form_widget(form.note)}}</td>
+        <td class="form-control "> {{form_errors(form.note)}}</td>
+</div>
+</center>
+
+
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,85 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+<div class="form-group">
+    <div>
+        <label for="">Choisir l'encadrant professionnel</label>
+        <td class="form-control"> {{form_widget(form.id_enc_entreprise)}}</td>
+        <td class="form-control "> {{form_errors(form.id_enc_entreprise)}}</td>
+    </div>
+    <div>
+        <label for="">Choisir l'etudiant</label>
+        <td class="form-control"> {{form_widget(form.eval_etudiant)}}</td>
+        <td class="form-control "> {{form_errors(form.eval_etudiant)}}</td>
+    </div>
+
+
+
+
+
+    <div>
+        <label for="">Le stagiaire est-il ponctuel ?</label>
+        <td class="form-control"> {{form_widget(form.ponctualite)}}</td>
+        <td class="form-control "> {{form_errors(form.ponctualite)}}</td>
+    </div>
+
+    <div>
+        <label for="">Commentaire</label>
+        <td class="form-control"> {{form_widget(form.comm1)}}</td>
+        <td class="form-control "> {{form_errors(form.comm1)}}</td>
+    </div>
+    <div>
+        <label for="">D’après vous, est-il déjà bien intégré parmi les membres de votre service ?</label>
+        <td class="form-control"> {{form_widget(form.integration)}}</td>
+        <td class="form-control "> {{form_errors(form.integration)}}</td>
+    </div>
+
+
+
+    <div>
+        <label for="">Commentaire</label>
+        <td class="form-control"> {{form_widget(form.comm2)}}</td>
+        <td class="form-control "> {{form_errors(form.comm2)}}</td>
+    </div>
+    <div>
+        <label for="">La quantité de travail fournie est elle satisfaisante ?</label>
+        <td class="form-control"> {{form_widget(form.travail)}}</td>
+        <td class="form-control "> {{form_errors(form.travail)}}</td>
+    </div>
+
+    <div>
+        <label for="">Commentaire</label>
+        <td class="form-control"> {{form_widget(form.comm3)}}</td>
+        <td class="form-control "> {{form_errors(form.comm3)}}</td>
+    </div>
+
+    <div>
+        <label for="">Possède-t-il les compétences techniques nécessaires pour son travail ?</label>
+        <td class="form-control"> {{form_widget(form.competence)}}</td>
+        <td class="form-control "> {{form_errors(form.competence)}}</td>
+    </div>
+
+    <div>
+        <label for="">Commentaire</label>
+        <td class="form-control"> {{form_widget(form.comm4)}}</td>
+        <td class="form-control "> {{form_errors(form.comm4)}}</td>
+    </div>
+
+
+
+    <div>
+        <label for="">Etes-vous globalement satisfait du début de ce stage ?</label>
+        <td class="form-control"> {{form_widget(form.eg)}}</td>
+        <td class="form-control "> {{form_errors(form.eg)}}</td>
+    </div>
+
+    <div>
+        <label for="">Commentaire</label>
+        <td class="form-control"> {{form_widget(form.comm5)}}</td>
+        <td class="form-control "> {{form_errors(form.comm5)}}</td>
+    </div>
+
+</div>
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
