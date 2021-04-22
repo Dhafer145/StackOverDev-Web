@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\PresidentSearch;
 use App\Entity\Soutenance;
+use App\Form\PresidentSearchType;
 use App\Form\SoutenanceType;
 use App\Repository\SoutenanceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,13 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class SoutenanceCrudController extends AbstractController
 {
     /**
-     * @Route("/", name="soutenance_crud_index", methods={"GET"})
+     * @Route("/", name="soutenance_crud_index", methods={"GET","Post"})
      */
-    public function index(SoutenanceRepository $soutenanceRepository): Response
+    public function index(Request $request)
     {
-        return $this->render('soutenance_crud/index.html.twig', [
-            'soutenances' => $soutenanceRepository->findAll(),
-        ]);
+        $presidentsearch = new PresidentSearch();
+        $form = $this->createForm(PresidentSearchType::class,$presidentsearch);
+        $form->handleRequest($request);
+
+        $soutenance= [];
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $president = $presidentsearch->getPresident();
+            if ($president!="")
+                $soutenance= $this->getDoctrine()->getRepository(Soutenance::class)->findBy(['president' => $president] );
+            else
+                $soutenance= $this->getDoctrine()->getRepository(Soutenance::class)->findAll();
+        }
+        return $this->render('soutenance_crud/index.html.twig', [ 'form' =>$form->createView(),
+            'soutenances' => $soutenance]);
     }
 
     /**

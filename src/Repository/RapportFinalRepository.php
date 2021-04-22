@@ -18,6 +18,20 @@ class RapportFinalRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, RapportFinal::class);
     }
+    public function findByPlagiatRange($minValue,$maxValue)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.plagiat >= :minVal')
+            ->setParameter('minVal', $minValue)
+            ->andWhere('a.plagiat <= :maxVal')
+            ->setParameter('maxVal', $maxValue)
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 
     // /**
     //  * @return RapportFinal[] Returns an array of RapportFinal objects

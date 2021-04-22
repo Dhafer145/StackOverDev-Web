@@ -3,6 +3,7 @@
 {% block title %}RapportFinal index{% endblock %}
 
 {% block body %}
+
     <h1>RapportFinal index</h1>
 
     <table class="table">
@@ -22,7 +23,7 @@
                 <td>{{ rapport_final.fichier }}</td>
                 <td>
                     <a href="{{ path('rapport_crud_show', {'id': rapport_final.id}) }}">show</a>
-                    <a href="{{ path('rapport_crud_edit', {'id': rapport_final.id}) }}">edit</a>
+                  <a href="{{ path('rapport_crud_edit', {'id': rapport_final.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\RapportFinal;
+use App\Entity\RecherPlagiat;
 use App\Form\RapportFinalType;
 use App\Repository\RapportFinalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class RapportCrudController extends AbstractController
 {
+
+
     /**
      * @Route("/", name="rapport_crud_index", methods={"GET"})
      */
@@ -49,7 +52,7 @@ class RapportCrudController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="rapport_crud_show", methods={"GET"})
+     * @Route("/show/{id}", name="rapport_crud_show", methods={"GET"})
      */
     public function show(RapportFinal $rapportFinal): Response
     {
@@ -79,16 +82,40 @@ class RapportCrudController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="rapport_crud_delete", methods={"POST"})
+     * @Route("/delete/{id}", name="rapport_crud_delete", methods={"POST"})
      */
     public function delete(Request $request, RapportFinal $rapportFinal): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$rapportFinal->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $rapportFinal->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($rapportFinal);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('rapport_crud_index');
+    }
+
+    /**
+     * @Route("/Rapport_plagiat/", name="Rapport_par_plagiat")
+     * Method({"GET"})
+     */
+    public function RapportParPlagiat(Request $request)
+    {
+
+        $recherplagiat = new RecherPlagiat();
+        $form = $this->createForm(RecherPlagiat::class, $recherplagiat);
+        $form->handleRequest($request);
+
+        $rapport_final = [];
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $minPlagiat = $recherplagiat->getMinPlagiat();
+            $maxPlagiat = $recherplagiat->getMaxPlagiat();
+
+            $rapport_final = $this->getDoctrine()->getRepository(RapportFinal::class)->findByPlagiatRange($minPlagiat, $maxPlagiat);
+        }
+
+        return $this->render('rapport_crud/RapportParPrix.html.twig', ['form' => $form->createView(), 'rapport_final' => $rapport_final]);
+
     }
 }

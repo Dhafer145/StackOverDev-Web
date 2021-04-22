@@ -21,6 +21,7 @@ class RapportFinal
     /**
      * @ORM\Column(type="float")
      * @Assert\NotNull(message="Veuillez saisir le plagiat" )
+     *  @Assert\LessThan(50)(message="veilliez saisir un nombre inférieur à 50")
      */
     private $plagiat;
 
