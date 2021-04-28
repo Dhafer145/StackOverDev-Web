@@ -30,9 +30,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('rendez_vous_c_r_u_d_index') }}">Back</a>
+    <a href="{{ path('rendez_vous_c_r_u_d_index') }}" class = "btn btn-check">Back</a>
 
-    <a href="{{ path('rendez_vous_c_r_u_d_edit', {'id': rendez_vou.id}) }}">Edit</a>
+    <a href="{{ path('rendez_vous_c_r_u_d_edit', {'id': rendez_vou.id}) }}" class = "btn btn-check">Edit</a>
 
     {{ include('rendez_vous_crud/_delete_form.html.twig') }}
 

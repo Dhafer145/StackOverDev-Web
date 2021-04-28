@@ -19,22 +19,19 @@ class RendezVousRepository extends ServiceEntityRepository
         parent::__construct($registry, RendezVous::class);
     }
 
-    // /**
-    //  * @return RendezVous[] Returns an array of RendezVous objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return RendezVous[] Returns an array of RendezVous objects
+      */
+
+    public function findMenuByName($userName)
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('rendez_vous')
+            ->Where('rendez_vous.userName LIKE :user_name')
+            ->setParameter('user_name', '%' . $userName . '%')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?RendezVous

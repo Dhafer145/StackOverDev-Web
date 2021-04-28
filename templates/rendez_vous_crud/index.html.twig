@@ -4,19 +4,7 @@
 
 {% block body %}
     <h1>Rendez Vous</h1>
-    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
-      {{ form_start(form) }}
-    <div class="form-row align-items-end" >
-        <div class="col">
-            {{ form_row(form.userName) }}
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Rechercher</button>
-            </div>
-        </div>
-    </div>
-    {{ form_end(form) }}
+    <input class="form-control" type="search" id="search" placeholder="Search by Nom">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -28,7 +16,7 @@
                 <th>actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="all">
         {% for rendez_vou in rendez_vouses %}
             <tr>
                 <td>{{ rendez_vou.id }}</td>
@@ -39,7 +27,31 @@
                 <td>
                     <a href="{{ path('rendez_vous_c_r_u_d_show', {'id': rendez_vou.id}) }}" class = "btn btn-check">AFFICHER </a>
                     <a href="{{ path('rendez_vous_c_r_u_d_edit', {'id': rendez_vou.id}) }}" class = "btn btn-dark">EDITER</a>
-<!--                    <a href="{{ path('rendez_vous_c_r_u_d_delete', {'id': rendez_vou.id}) }}" class = "btn btn-danger" onclick="return confirm('Etes-vous sûr de supprimer cet article?');">SUPPRIMER</a> -->
+                    <a href="{{ path('printPDF') }}" class = "btn btn-check">IMPRIMER </a>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script>
+                        $( document ).ready(function() {
+                            var currentRequest = null;
+                            $("#search").keyup(function(e){
+                                var value = $(this).val();
+                                if(currentRequest != null) {
+                                    currentRequest.abort();
+                                }
+                                currentRequest = $.ajax({
+                                    url : "{{ path('rechercheRV') }}",
+                                    type : 'GET',
+                                    data: {
+                                        'searchValue' : value
+                                    },
+                                    success : function(retour)
+                                    {
+                                        $('#all').html(retour);
+                                    },
+                                });
+                                return false;
+                            });
+                        });
+                    </script>
                 </td>
             </tr>
         {% else %}
@@ -50,6 +62,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('rendez_vous_c_r_u_d_new') }}">Ajouter un rendez_vous</a>
+    <a href="{{ path('rendez_vous_c_r_u_d_new') }}" class = "btn btn-check">Ajouter un rendez_vous</a>
 {% endblock %}
 

@@ -13,7 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\{TextType,ButtonType,EmailType,HiddenType,PasswordType,TextareaType,SubmitType,NumberType,DateType,MoneyType,BirthdayType};
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
 /**
  * @Route("/rendez/vous/c/r/u/d")
  */
@@ -22,23 +23,59 @@ class RendezVousCRUDController extends AbstractController
     /**
      * @Route("/", name="rendez_vous_c_r_u_d_index", methods={"GET","Post"})
      */
-    public function index(Request $request)
+    public function index(RendezVousRepository $rendezVousRepository)
     {
-        $propertySearch = new PropertySearch();
-        $form = $this->createForm(PropertySearchType::class,$propertySearch);
-        $form->handleRequest($request);
+        return $this->render('rendez_vous_crud/index.html.twig', [
+            'rendez_vouses' => $rendezVousRepository->findAll()
+        ]);
+    }
+    /**
+     * @Route("/recherche", name="rechercheRV")
+     * @param Request $request
+     * @return Response
+     */
+    public function searchAction(RendezVousRepository $rendezVousRepository, Request $request)
+    {
+        $requestString = $request->get('searchValue');
+        $rendezVou = $rendezVousRepository->findMenubyName($requestString);
 
-        $rendezVou= [];
+        return $this->render('rendez_vous_crud/search.html.twig', [
+            'rendez_vouses' => $rendezVou,
+        ]);
+    }
 
-        if($form->isSubmitted() && $form->isValid()) {
-            $userName = $propertySearch->getUserName();
-            if ($userName!="")
-                $rendezVou= $this->getDoctrine()->getRepository(RendezVous::class)->findBy(['userName' => $userName] );
-            else
-                $rendezVou= $this->getDoctrine()->getRepository(RendezVous::class)->findAll();
-        }
-        return $this->render('rendez_vous_crud/index.html.twig', [ 'form' =>$form->createView(),
-            'rendez_vouses' => $rendezVou]);
+    /**
+     * @Route("/listepdf", name="printPDF", methods={"GET"})
+     */
+    public function PrintPDF(RendezVousRepository $rendezVousRepository)
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $rendezVou = $rendezVousRepository->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('rendez_vous_crud/listepdf.html.twig', [
+            'rendez_vous' => $rendezVou,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("Rendez_vous.pdf", [
+            "Attachment" => true
+        ]);
+
     }
 
     /**
@@ -123,7 +160,5 @@ class RendezVousCRUDController extends AbstractController
 
         return $this->redirectToRoute('rendez_vous_c_r_u_d_index');
     }
-
-
 
 }

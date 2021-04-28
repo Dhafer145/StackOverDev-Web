@@ -1,0 +1,53 @@
+{% block body %}
+    <h1 CSS font-family  style="color:#143D59;" align="center" >Rendez Vous</h1><hr>
+    <table width="100%"; id="rv">
+        <thead>
+        <style>
+            #rv {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            #rv td, #rv th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #rv tr:nth-child(even){background-color: #f2f2f2;}
+
+            #rv tr:hover {background-color: #ddd;}
+
+            #rv th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #F4B41A;
+                color: white;
+            }
+            th {height: 70px;}
+            h1 {font-family: "Georgia", Times, serif;}
+        </style>
+        <tr>
+            <th style="color:#143D59;">ID</th>
+            <th style="color:#143D59;">User_name</th>
+            <th style="color:#143D59;">Lieu</th>
+            <th style="color:#143D59;">Date</th>
+            <th style="color:#143D59;">Raison</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for rendez_vou in rendez_vous %}
+            <tr>
+                <td>{{ rendez_vou.id }}</td>
+                <td>{{ rendez_vou.userName }}</td>
+                <td>{{ rendez_vou.lieu }}</td>
+                <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d') : '' }}</td>
+                <td>{{ rendez_vou.raison }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

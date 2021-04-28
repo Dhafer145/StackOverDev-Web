@@ -27,7 +27,7 @@ class RendezVous
      * @var string
      *
      * @ORM\Column(name="user_name", type="string", length=255, nullable=false)
-     * @Assert\NotBlank(message="NSC is required")
+     * @Assert\NotBlank(message="Veuillez saisir le nom")
      */
     private $userName;
 
@@ -35,6 +35,7 @@ class RendezVous
      * @var string
      *
      * @ORM\Column(name="lieu", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="Veuillez saisir le lieu")
      */
     private $lieu;
 
@@ -42,6 +43,7 @@ class RendezVous
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date", nullable=false)
+     * @Assert\NotBlank(message="Veuillez saisir la date")
      */
     private $date;
 
@@ -49,6 +51,7 @@ class RendezVous
      * @var string
      *
      * @ORM\Column(name="raison", type="string", length=1000, nullable=false)
+     * @Assert\NotBlank(message="Veuillez saisir le raison")
      */
     private $raison;
 

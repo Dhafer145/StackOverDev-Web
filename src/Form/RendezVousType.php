@@ -16,7 +16,6 @@ class RendezVousType extends AbstractType
             ->add('lieu')
             ->add('date')
             ->add('raison')
-            ->add('rdvUser')
         ;
     }
 
