@@ -1,0 +1,7 @@
+creation table user
+chaque personne doit modfier son profile
+authentificatioon 1/2done
+password cryppté .. 1/2done
+controle saisie ... done
+
+semaine prochaine: crud metier 2api interface graphique

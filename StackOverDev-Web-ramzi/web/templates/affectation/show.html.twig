@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affectation{% endblock %}
+
+{% block body %}
+    <h1>Affectation</h1>
+
+
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ affectation.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_etudiant</th>
+                <td>{{ affectation.nomEtudiant }}</td>
+            </tr>
+            <tr>
+                <th>Nom_encadrant_academique</th>
+                <td>{{ affectation.nomEncadrantAcademique }}</td>
+            </tr>
+            <tr>
+                <th>Nom_encadrant_entreprise</th>
+                <td>{{ affectation.nomEncadrantEntreprise }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('affectation_index') }}">back to list</a>
+
+    <a href="{{ path('affectation_edit', {'id': affectation.id}) }}">edit</a>
+
+    {{ include('affectation/_delete_form.html.twig') }}
+{% endblock %}

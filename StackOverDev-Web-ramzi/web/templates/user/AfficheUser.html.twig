@@ -1,0 +1,96 @@
+
+{% extends 'baseback.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1 xmlns="http://www.w3.org/1999/html">User</h1>
+
+    <table class="table">
+        <form class="w-search">
+            <div class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" id="search" class="form-control"  placeholder="Search">
+                    </input>
+                </div>
+            </div>
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="#"> <span class="fa arrow"></span></a>
+                    <ul style="background-color: #0b0b0b" class="nav "  id="entitiesNav">
+                    </ul>
+                </li>
+            </ul>
+        </form>
+
+
+
+
+
+
+
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>nom d'utilisateur</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Adresse</th>
+            <th>Début Stage</th>
+            <th> Suprimer</th>
+            <th> Modifier </th>
+        </tr>
+        </thead>
+        <tbody id="all">
+        {% include 'user/userAjax.html.twig'  %}
+        </tbody>
+
+        <tbody id="search">
+        </tbody>
+
+    </table>
+
+
+
+    <script src="{{ asset('assets/js/jquery.min.js') }}" ></script>
+
+    <script
+            src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js') }}">
+
+    </script>
+
+
+    <script>
+        $( document).ready(function () {
+            var currentRequest=null;
+            $("#search").keyup(function (e){
+                var value =$(this).val();
+
+                if(currentRequest != null){
+                    currentRequest.abort();
+                }
+
+                currentRequest= $.ajax({
+                    url:"{{ path('rechercheajax') }}",
+                    type :'GET',
+                    data:{
+                        'searchValue':value
+                    },
+
+                    success : function (retour){
+                        $('#all').html(retour);
+                    },
+
+                })
+                return false;
+            });
+        });
+    </script>
+
+
+
+
+
+{% endblock %}
+
