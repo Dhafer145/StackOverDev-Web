@@ -28,7 +28,7 @@ class PropositionProjetController extends AbstractController
     /**
      * @Route("/new", name="proposition_projet_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, \Swift_Mailer $mailer): Response
     {
         $propositionProjet = new PropositionProjet();
         $form = $this->createForm(PropositionProjetType::class, $propositionProjet);
@@ -39,7 +39,18 @@ class PropositionProjetController extends AbstractController
             $entityManager->persist($propositionProjet);
             $entityManager->flush();
 
+            $message=(new \Swift_Message('Information'))
+                ->setFrom("azeaz@azeaz.com")
+                ->setTo($propositionProjet->getEtudiantpp()->getEmail())
+                ->setBody("Une proposition de projet a été ajoutée portant le nom de ce sujet : ".$propositionProjet->getNomSujet()." ajoutée par l'étudiant: ".$propositionProjet->getEtudiantpp()->getUserName(),
+                    'text/html'
+                );
+            $mailer->send($message);
             return $this->redirectToRoute('proposition_projet_index');
+
+
+
+
         }
 
         return $this->render('proposition_projet/new.html.twig', [

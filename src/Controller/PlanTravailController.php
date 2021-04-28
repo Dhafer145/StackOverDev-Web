@@ -28,7 +28,7 @@ class PlanTravailController extends AbstractController
     /**
      * @Route("/new", name="plan_travail_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, \Swift_Mailer $mailer): Response
     {
         $planTravail = new PlanTravail();
         $form = $this->createForm(PlanTravailType::class, $planTravail);
@@ -38,6 +38,15 @@ class PlanTravailController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($planTravail);
             $entityManager->flush();
+
+            $message=(new \Swift_Message('Information'))
+                ->setFrom("azeaz@azeaz.com")
+                ->setTo($planTravail->getEtudiantpp()->getEmail())
+                ->setBody("Un étudiant a ajouté un plan de travail ",
+                    'text/html'
+                );
+            $mailer->send($message);
+
 
             return $this->redirectToRoute('plan_travail_index');
         }
@@ -93,6 +102,7 @@ class PlanTravailController extends AbstractController
     }
 
     /* encaaaaaaaadraaant*/
+
     /**
      * @Route("/encadrant", name="plan_travail_index_encadrant", methods={"GET"})
      */

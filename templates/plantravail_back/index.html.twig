@@ -1,4 +1,4 @@
-{% extends 'baseBack.html.twig' %}
+{% extends 'baseback.html.twig' %}
 
 {% block title %}Plan de Travail {% endblock %}
 
@@ -8,18 +8,17 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>nom etudiant</th>
             <th>Backlog</th>
             <th>Sprints</th>
             <th>Validation</th>
 
-            <th>actions</th>
         </tr>
         </thead>
         <tbody>
         {% for plan_travail in plan_travails %}
             <tr>
-                <td>{{ plan_travail.id }}</td>
+                <td>{{ plan_travail.etudiantpp.username }}</td>
                 <td>{{ plan_travail.backlog }}</td>
                 <td>{{ plan_travail.sprints }}</td>
                 <td>{{ plan_travail.validation }}</td>

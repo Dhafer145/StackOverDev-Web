@@ -26,19 +26,17 @@
                         <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle navigation</span>
                     </button>
-                    <a href="index.html" class="navbar-brand brand"> Esprit PFE </a>
+                    <a href="{{ path('accueil') }}" class="navbar-brand brand"> Esprit PFE </a>
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
 
                         <li class="propClone"><a href="{{ path('proposition_projet_new') }}">Proposer un projet</a></li>
-                        {#  {% if app.user=='' %} #}
-                        <li class="propClone"><a href="{{ path('compte_rendu_new') }}">Compte rendu etudiant</a>
-                            {#  {% else %} #}
-                        <li class="propClone"><a href="{{ path('compte_rendu_index_encadrant') }}">Compte Rendu encadrant</a>
-                            {#  {% endif %} #}
+
+                        <li class="propClone"><a href="{{ path('compte_rendu_new') }}">Compte rendu</a>
+
                         <li class="propClone"><a href="{{ path('plan_travail_new') }}">Plan travail</a></li>
-                        <li class="propClone"><a href="{{ path('plan_travail_index_encadrant') }}">Plan de travail encadrant</a></li>
+
                         <li class="propClone"><a href="{{ path('journal_projet_index') }}">journal de stage</a></li>
 
                     </ul>

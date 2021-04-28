@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Journal de Projet {% endblock %}
+{% block title %}Journal de stage {% endblock %}
 
 {% block body %}
-    <h1>JournalProjet index</h1>
+    <h1>Journal de stage</h1>
 
     <table class="table">
         <form class="w-search">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col">
                             <form action="{{ path('trie_croissant') }}" method="get" >
-                                <button class="btn btn-light" type="submit" >croissanat</button>
+                                <button class="btn btn-light" type="submit" >croissant</button>
                             </form>
                         </div>
                         <div class="col">
@@ -52,6 +52,7 @@
         <tbody id="search">
         </tbody>
     </table>
+
 
     <a href="{{ path('journal_projet_new') }}">Create new</a>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>

@@ -1,0 +1,93 @@
+{% extends 'base_encadrant_ac.html.twig' %}
+
+{% block title %}Journal de stage {% endblock %}
+
+{% block body %}
+    <h1>Journal de stage</h1>
+
+    <table class="table">
+        <form class="w-search">
+            <div class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" id="search" class="form-control" placeholder="Search">
+                </div>
+                <!-- /input-group -->
+            </div>
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="#"><span class="fa arrow"></span></a>
+                    <ul style="background-color: #0b0b0b" class="nav " id="entitiesNav">
+                    </ul>
+                </li>
+            </ul>
+        </form>
+        <thead>
+        <tr>
+            <th>nom etudiant</th>
+            <th>
+                <div class="row no-gutters align-items-center">
+                    <div class="col">
+                        Date
+                    </div>
+                    <div class="col">
+                        <form action="{{ path('trie_croissant') }}" method="get" >
+                            <button class="btn btn-light" type="submit" >croissant</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form action="{{ path('trie_decroissant') }}" method="get" >
+                            <button class="btn btn-light" type="submit" >decroissant</button>
+                        </form>
+                    </div>
+                </div>
+            </th>
+            <th>Tache</th>
+            <th>Avis</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody id="all">
+        {% include 'journal_projet/journal_ajax.html.twig' %}
+        </tbody>
+        <tbody id="search">
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('journal_projet_new') }}">Create new</a>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script
+            src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')}}">
+    </script>
+    <script>
+        $( document ).ready(function() {
+            var currentRequest = null;
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte
+                afin d’effectuer la recherche */
+                var value = $(this).val();
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
+
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est
+                « search » pour faire la recherche */
+                currentRequest = $.ajax({
+
+                    url : "{{ path('ajaxsearch') }}",
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+
+                    success : function(retour)
+                    {
+                        $('#all').html(retour);
+
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
