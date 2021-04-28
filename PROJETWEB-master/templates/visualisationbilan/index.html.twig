@@ -31,27 +31,28 @@
                         {% set rep1 = false %}
                         {% set rep2 = false %}
 
+
+
+
                         {% for user in users %}
-                            {% for reponse in reponses %}
-                                {% if reponse.repsEtud.id == user.id  and reponse.IndexPeriode == 1 %}
-                                    {% set rep = true %}
 
-                                {% endif %}
+                        {% for dem in user.etudReps %}
 
-                                {% if reponse.repsEtud.id == user.id  and reponse.IndexPeriode == 2 %}
-                                    {% set rep1 = true %}
 
-                                {% endif %}
-                                {% if reponse.repsEtud.id == user.id  and reponse.IndexPeriode == 3 %}
-                                    {% set rep2 = true %}
+                        {% set rep = dem.IndexPeriode %}
 
-                                {% endif %}
-                            {% endfor %}
+
+
+
+
+                        {% endfor %}
+
+
 
                             <tbody>
                         <tr>
                             <td>{{ user.getUserName }}</td>
-                            {% if rep == true %}
+                            {% if user.etudReps|length > 0 and rep == 1 %}
 
                             <td><a href="{{ path('visualisation_bilan_show') }}" class="badge badge-success">Rempli</a></td>
 
@@ -59,13 +60,13 @@
                                 <td><span class="badge badge-danger">Non Rempli</span></td>
                             {% endif %}
 
-                            {% if rep1 == true %}
+                            {% if user.etudReps|length > 0 and rep == 2  %}
                                 <td><a href="{{ path('visualisation_bilan_show_middle') }}" class="badge badge-success">Rempli</a></td>
                             {% else %}
                                 <td><span class="badge badge-danger">Non Rempli</span></td>
                             {% endif %}
 
-                            {% if rep2 == true %}
+                            {% if user.etudReps|length > 0 and rep == 3 %}
                             <td><a href="{{ path('visualisation_bilan_show_end') }}" class="badge badge-success">Rempli </a></td>
                             {% else %}
                             <td><span class="badge badge-danger">Non Rempli </span></td>

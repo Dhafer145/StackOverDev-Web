@@ -59,6 +59,14 @@ class UserRepository extends ServiceEntityRepository
 
     }
 
+    public function findUsersByReponses(){
+        return $this->createQueryBuilder('u')
+            ->select('u','r')
+            ->leftJoin('u.etud_reps', 'r')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
