@@ -9,6 +9,8 @@ use App\Repository\ReponsesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\UserRepository;
+
 
 class VisualisationbilanController extends AbstractController
 {
@@ -25,11 +27,11 @@ class VisualisationbilanController extends AbstractController
     }
 
     /**
-     * @Route("/visualisationbilan/show", name="visualisation_bilan_show")
+     * @Route("/visualisationbilan/show/{id}", name="visualisation_bilan_show")
      */
-    public function show(QuestionsRepository $questionsRepository, ReponsesRepository $reponsesRepository): Response
+    public function show(QuestionsRepository $questionsRepository,UserRepository $userRepository, ReponsesRepository $reponsesRepository, User $id): Response
     {
-        $user = $this->getUser();
+        $user = $userRepository->find($id);
         $reponse = $reponsesRepository->findBy(['reps_etud' => $user, 'IndexPeriode' => [1]]);
 
 
@@ -37,11 +39,11 @@ class VisualisationbilanController extends AbstractController
     }
 
     /**
-     * @Route("/visualisationbilan/show/middle", name="visualisation_bilan_show_middle")
+     * @Route("/visualisationbilan/show/{id}/middle", name="visualisation_bilan_show_middle")
      */
-    public function showMiddle(QuestionsRepository $questionsRepository, ReponsesRepository $reponsesRepository): Response
+    public function showMiddle(QuestionsRepository $questionsRepository,UserRepository $userRepository, ReponsesRepository $reponsesRepository, User $id): Response
     {
-        $user = $this->getUser();
+        $user = $userRepository->find($id);
         $reponse = $reponsesRepository->findBy(['reps_etud' => $user, 'IndexPeriode' => [2]]);
 
 
@@ -49,11 +51,11 @@ class VisualisationbilanController extends AbstractController
     }
 
     /**
-     * @Route("/visualisationbilan/show/end", name="visualisation_bilan_show_end")
+     * @Route("/visualisationbilan/show/{id}/end", name="visualisation_bilan_show_end")
      */
-    public function showEnd(QuestionsRepository $questionsRepository, ReponsesRepository $reponsesRepository): Response
+    public function showEnd(QuestionsRepository $questionsRepository,UserRepository $userRepository, ReponsesRepository $reponsesRepository, User $id): Response
     {
-        $user = $this->getUser();
+        $user = $userRepository->find($id);
         $reponse = $reponsesRepository->findBy(['reps_etud' => $user, 'IndexPeriode' => [3]]);
 
 

@@ -54,20 +54,20 @@
                             <td>{{ user.getUserName }}</td>
                             {% if user.etudReps|length > 0 and rep == 1 %}
 
-                            <td><a href="{{ path('visualisation_bilan_show') }}" class="badge badge-success">Rempli</a></td>
+                            <td><a href="{{ path('visualisation_bilan_show',{id : user.id}) }}" class="badge badge-success">Rempli</a></td>
 
                             {% else %}
                                 <td><span class="badge badge-danger">Non Rempli</span></td>
                             {% endif %}
 
                             {% if user.etudReps|length > 0 and rep == 2  %}
-                                <td><a href="{{ path('visualisation_bilan_show_middle') }}" class="badge badge-success">Rempli</a></td>
+                                <td><a href="{{ path('visualisation_bilan_show_middle',{id : user.id}) }}" class="badge badge-success">Rempli</a></td>
                             {% else %}
                                 <td><span class="badge badge-danger">Non Rempli</span></td>
                             {% endif %}
 
                             {% if user.etudReps|length > 0 and rep == 3 %}
-                            <td><a href="{{ path('visualisation_bilan_show_end') }}" class="badge badge-success">Rempli </a></td>
+                            <td><a href="{{ path('visualisation_bilan_show_end',{id : user.id}) }}" class="badge badge-success">Rempli </a></td>
                             {% else %}
                             <td><span class="badge badge-danger">Non Rempli </span></td>
                             {% endif %}

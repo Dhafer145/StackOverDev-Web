@@ -22,7 +22,7 @@ class DebutstageController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-        $userRepo = $userRepository->countStartDeadlineUser(6);
+        $userRepo = $userRepository->countStartDeadlineUser(3);
         $numberjrs = $userRepo[0][1];
         return $this->render('debutstage/index.html.twig',[
             'date' => (int)$numberjrs
@@ -46,7 +46,7 @@ class DebutstageController extends AbstractController
                         QuestionsRepository $questionsRepository, UserRepository $userRepository,
                         EntityManagerInterface $em
     ) : Response {
-        $userRepo = $userRepository->find(6);
+        $userRepo = $userRepository->find(3);
         if ($request->isMethod('POST')) {
             foreach($request->request as $idQuestion=>$responseUser){
                 $question = $questionsRepository->findOneBy(["id"=>$idQuestion]);
