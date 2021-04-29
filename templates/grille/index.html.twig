@@ -1,0 +1,61 @@
+{% extends 'base_encadrant_ac.html.twig' %}
+
+{% block title %}Grilles d'évaluation{% endblock %}
+
+{% block body %}
+    <h1>Grilles d'évaluation</h1>
+    <form style="display: inline;"class="form-inline my-2 my-lg-0"  method="post" action="{{ path("recherche") }}">
+        <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </form>
+    note:
+    <a href="{{ path('tridesc')}}"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    <a href="{{ path('triasc')}}"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Encadrant</th>
+                <th>Etudiant</th>
+
+                <th>Date de remplissage</th>
+                <th>Mention</th>
+                <th>Note</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grille in grilles %}
+            <tr>
+                <td>{{ grille.id }}</td>
+
+                <td>{{ grille.getEncAcademique().getUserName() }}</td>
+                <td>{{ grille.getGrilleEtudiant().getUserName() }}</td>
+
+
+                <td>{{ grille.dateremp ? grille.dateremp|date('Y-m-d') : '' }}</td>
+                <td>{{ grille.mention }}</td>
+                <td>{{ grille.note }}</td>
+
+                <td>
+                    <a href="{{ path('grille_show', {'id': grille.id}) }}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('grille_edit', {'id': grille.id}) }}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('grille_new') }}">Ajouter une grille d'evaluation</a>
+{% endblock %}

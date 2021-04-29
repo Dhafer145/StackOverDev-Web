@@ -1,0 +1,13 @@
+<tr {% for u in user %}>
+    <td>{{ u.id }} </td>
+    <td> {{ u.UserName }}</td>
+    <td> {{ u.Email }}</td>
+    <td> {{ u.Password }}</td>
+    <td> {{ u.Role }}</td>
+    <td> {{ u.Addresse }}</td>
+    <td>{{ u.DebutStage ? u.debutStage|date('d-m-Y') : '' }}</td>
+    <td> <a href="{{ path('supprimer',{'id':u.id})}}">Supprimer</a></td>
+    <td> <a href="{{ path('modifier',{'id':u.id})}}">Modifier</a></td>
+
+
+</tr {% endfor %}

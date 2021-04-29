@@ -1,0 +1,13 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}New Questions{% endblock %}
+
+{% block body %}
+    <div class="text-right"><button type="button" class="btn btn-primary"><a href="{{ path('questions_index') }}" class="text-white">retour à la liste</a></button></div>
+
+    <h1>Ajouter une nouvelle question</h1>
+
+
+    {{ include('questions/_form.html.twig') }}
+
+{% endblock %}

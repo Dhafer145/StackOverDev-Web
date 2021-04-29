@@ -9,19 +9,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @Route("/compte/rendu")
  */
-class CompteRenduController extends AbstractController
+class CompteRenduController extends Controller
 {
     /**
      * @Route("/", name="compte_rendu_index", methods={"GET"})
      */
-    public function index(CompteRenduRepository $compteRenduRepository): Response
+    public function index(CompteRenduRepository $compteRenduRepository, Request $request): Response
     {
+
+
+
+        $paginator  = $this->get('knp_paginator');
+        $c = $paginator->paginate(
+            $compteRenduRepository->findAll(),
+            $request->query->getInt('page', 1),
+            2
+        );
+
         return $this->render('consulter_cr/index.html.twig', [
-            'compte_rendus' => $compteRenduRepository->findAll(),
+            'compte_rendus' => $c,
         ]);
     }
 

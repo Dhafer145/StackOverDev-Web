@@ -1,0 +1,76 @@
+{% extends 'base_encadrant_ac.html.twig' %}
+
+{% block title %}Grille{% endblock %}
+
+{% block body %}
+    <h1>Grille</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ grille.id }}</td>
+            </tr>
+            <tr>
+                <th>Etudiant</th>
+                <td>{{ grille.getGrilleEtudiant().getUserName() }}</td>
+            </tr>
+            <tr>
+                <th>Encadrant académique</th>
+                <td>{{ grille.getEncAcademique().getUserName() }}</td>
+            </tr>
+            <tr>
+                <th>Dateremp</th>
+                <td>{{ grille.dateremp ? grille.dateremp|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mention</th>
+                <td>{{ grille.mention }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ grille.note }}</td>
+            </tr>
+            <tr>
+                <th>Comprendre et intégrer les enjeux et la stratégie de l’entreprise</th>
+                <td>{{ grille.q1 }}</td>
+            </tr>
+            <tr>
+                <th>Analyser et/ou chercher les solutions à un problème de conception, de réalisation, d’amélioration de produit</th>
+                <td>{{ grille.q2 }}</td>
+            </tr>
+            <tr>
+                <th>Conduire un projet de création, de conception, de réalisation, d’amélioration de produit, de système ou de service </th>
+                <td>{{ grille.q3 }}</td>
+            </tr>
+            <tr>
+                <th>Mettre en œuvre sa maîtrise scientifique ou technique au sein de l’organisation </th>
+                <td>{{ grille.q4 }}</td>
+            </tr>
+            <tr>
+                <th>Organiser sa mission et manager les ressources</th>
+                <td>{{ grille.q5 }}</td>
+            </tr>
+            <tr>
+                <th>Qualité et présentation du document</th>
+                <td>{{ grille.q6 }}</td>
+            </tr>
+            <tr>
+                <th>Qualité de la présentation orale</th>
+                <td>{{ grille.q7 }}</td>
+            </tr>
+            <tr>
+                <th>Qualité de l’argumentation</th>
+                <td>{{ grille.q8 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('grille_index') }}">back to list</a>
+
+    <a href="{{ path('grille_edit', {'id': grille.id}) }}">edit</a>
+    <a href="{{ path('grille_imprime', {'id': grille.id}) }}">imprimer</a>
+
+    {{ include('grille/_delete_form.html.twig') }}
+{% endblock %}
+

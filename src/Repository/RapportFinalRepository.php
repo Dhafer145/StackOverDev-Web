@@ -19,6 +19,7 @@ class RapportFinalRepository extends ServiceEntityRepository
         parent::__construct($registry, RapportFinal::class);
     }
 
+
     // /**
     //  * @return RapportFinal[] Returns an array of RapportFinal objects
     //  */

@@ -1,0 +1,34 @@
+
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Affectation{% endblock %}
+
+{% block body %}
+    <h1>Affectation</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <th>nom etudiant</th>
+            <th>nom encadrant aca</th>
+            <th>nom encadrant entreprise</th>
+
+        </tr>
+        <tr {% for a in affecter %}>
+            <td>{{ a.id }} </td>
+            <td> {{ a.NomEtudiant.UserName }}</td>
+            <td> {{ a.NomEncadrantAcademique.UserName  }}</td>
+            <td> {{ a.NomEncadrantEntreprise.UserName }}</td>
+
+            
+            <td> <a href="{{ path('modifierAffectation',{'id':a.id})}}">Modifier</a></td>
+
+
+        </tr {% endfor %} >
+
+        </tbody>
+    </table>
+
+{% endblock %}
+

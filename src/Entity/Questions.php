@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\QuestionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,11 +22,13 @@ class Questions
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank (message="Veuillez ecrire une question")
      */
     private $quest;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\LessThan(4)(message=Veuillez choisir 0 , 1 ,2 ou 3)
      */
     private $IndexPeriode;
 
@@ -34,15 +37,30 @@ class Questions
      */
     private $questions_bilans;
 
+
+
     /**
-     * @ORM\OneToMany(targetEntity=Reponses::class, mappedBy="rep_de_quest")
+     * @ORM\OneToMany(targetEntity=Reponses::class, mappedBy="question_de_reponses")
      */
-    private $reps_question;
+    private $reponses;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reponses::class, mappedBy="question_des_reponses")
+     */
+    private $lesreponses_dequestion;
+
+
+
+
+
 
     public function __construct()
     {
         $this->questions_bilans = new ArrayCollection();
         $this->reps_question = new ArrayCollection();
+        $this->question_reponses = new ArrayCollection();
+        $this->lesreponses_dequestion = new ArrayCollection();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -104,30 +122,35 @@ class Questions
     /**
      * @return Collection|Reponses[]
      */
-    public function getRepsQuestion(): Collection
+    public function getLesreponsesDequestion(): Collection
     {
-        return $this->reps_question;
+        return $this->lesreponses_dequestion;
     }
 
-    public function addRepsQuestion(Reponses $repsQuestion): self
+    public function addLesreponsesDequestion(Reponses $lesreponsesDequestion): self
     {
-        if (!$this->reps_question->contains($repsQuestion)) {
-            $this->reps_question[] = $repsQuestion;
-            $repsQuestion->setRepDeQuest($this);
+        if (!$this->lesreponses_dequestion->contains($lesreponsesDequestion)) {
+            $this->lesreponses_dequestion[] = $lesreponsesDequestion;
+            $lesreponsesDequestion->setQuestionDesReponses($this);
         }
 
         return $this;
     }
 
-    public function removeRepsQuestion(Reponses $repsQuestion): self
+    public function removeLesreponsesDequestion(Reponses $lesreponsesDequestion): self
     {
-        if ($this->reps_question->removeElement($repsQuestion)) {
+        if ($this->lesreponses_dequestion->removeElement($lesreponsesDequestion)) {
             // set the owning side to null (unless already changed)
-            if ($repsQuestion->getRepDeQuest() === $this) {
-                $repsQuestion->setRepDeQuest(null);
+            if ($lesreponsesDequestion->getQuestionDesReponses() === $this) {
+                $lesreponsesDequestion->setQuestionDesReponses(null);
             }
         }
 
         return $this;
     }
+
+
+
+
+
 }

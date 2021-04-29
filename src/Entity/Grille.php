@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\GrilleRepository;
+use DateTime;
+
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,41 +37,57 @@ class Grille
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotNull(message="Veuillez saisir A, B, C ou D" )
+     * @Assert\Regex("/[A,B,C,D]/")
      */
     private $q1;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotNull(message="Veuillez saisir A, B, C ou D" )
+     * @Assert\Regex("/[A,B,C,D]/")
      */
     private $q2;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotNull(message="Veuillez saisir A, B, C ou D" )
+     * @Assert\Regex("/[A,B,C,D]/")
      */
     private $q3;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotNull(message="Veuillez saisir A, B, C ou D" )
+     * @Assert\Regex("/[A,B,C,D]/")
      */
     private $q4;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotNull(message="Veuillez saisir A, B, C ou D" )
+     * @Assert\Regex("/[A,B,C,D]/")
      */
     private $q5;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotNull(message="Veuillez saisir A, B, C ou D" )
+     * @Assert\Regex("/[A,B,C,D]/")
      */
     private $q6;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotNull(message="Veuillez saisir A, B, C ou D" )
+     * @Assert\Regex("/[A,B,C,D]/")
      */
     private $q7;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotNull(message="Veuillez saisir A, B, C ou D" )
+     * @Assert\Regex("/[A,B,C,D]/")
      */
     private $q8;
 
@@ -79,10 +98,18 @@ class Grille
     private $enc_academique;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="etud_grille", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="etud_grille", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $grille_etudiant;
+
+
+
+    public  function __construct()
+    {
+        $this->dateremp=new DateTime();
+
+    }
 
     public function getId(): ?int
     {

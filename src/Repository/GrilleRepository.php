@@ -18,6 +18,20 @@ class GrilleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Grille::class);
     }
+    public function tridesc()
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.note', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function triasc()
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.note', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
     // /**
     //  * @return Grille[] Returns an array of Grille objects

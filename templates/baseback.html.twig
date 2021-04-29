@@ -21,11 +21,21 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light" id="accordionSidebar">
+                <li class="nav-item"><a class="nav-link" href="{{ path('ajouter') }}"><i class="fas fa-tachometer-alt"></i><span>Ajouter un utilisateur</span></a></li>
+
+
+                <li class="nav-item"><a class="nav-link" href="{{ path('afficheuser') }}"><i class="far fa-user-circle"></i><span>Afficher utilisateurs</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('affecter') }}"><i class="fas fa-user-circle"></i><span>Affecter encadrants</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('afficheaffectation') }}"><i class="fas fa-user-circle"></i><span>Afficher affectations</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('proposition_back') }}"><i class="fas fa-tachometer-alt"></i><span>Consullter les propositions</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('compte_rendu_back') }}"><i class="fas fa-user"></i><span>Consulter comptes rendus</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('plantravail_back') }}"><i class="fas fa-table"></i><span>Consulter plans de travaux</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ path('proposition_projet_new') }}"><i class="far fa-user-circle"></i><span>Login</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ path('proposition_projet_new') }}"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('grille_back') }}"><i class="fas fa-table"></i><span>Consulter les grilles</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('evaluation_back') }}"><i class="fas fa-table"></i><span>Consulter les évaluations</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('statuser') }}"><i class="fas fa-table"></i><span>Statistiques utilisateurs</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('gestionbilan') }}"><i class="fas fa-table"></i><span>Gestion bilans</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('soutenance_crud_new') }}"><i class="fas fa-table"></i><span>Ajouter soutenance</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('soutenance_back') }}"><i class="fas fa-table"></i><span>Afficher soutenance</span></a></li>
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>

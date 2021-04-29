@@ -2,92 +2,129 @@
 
 namespace App\Entity;
 
-use App\Repository\ProcesVerbalRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ProcesVerbalRepository::class)
+ * ProcesVerbal
+ *
+ * @ORM\Table(name="proces_verbal", uniqueConstraints={@ORM\UniqueConstraint(name="pv_user_id", columns={"pv_user_id"})}, indexes={@ORM\Index(name="IDX_5B95250B207EBA30", columns={"pv_user_id"})})
+ * @ORM\Entity
  */
 class ProcesVerbal
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="membre_reunion", type="string", length=255, nullable=false)
      */
-    private $membre_reunion;
+    private $membreReunion;
 
     /**
-     * @ORM\Column(type="text")
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=0, nullable=false)
      */
-    private $Description;
+    private $description;
 
     /**
+     * @var \User
+     *
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="user_pvs")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $pv_user;
+    private $pvUser;
 
+    /**
+     * @return int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate(\DateTime $date): void
     {
         $this->date = $date;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getMembreReunion(): ?string
     {
-        return $this->membre_reunion;
+        return $this->membreReunion;
     }
 
-    public function setMembreReunion(string $membre_reunion): self
+    /**
+     * @param string $membreReunion
+     */
+    public function setMembreReunion(string $membreReunion): void
     {
-        $this->membre_reunion = $membre_reunion;
-
-        return $this;
+        $this->membreReunion = $membreReunion;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(string $Description): self
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
     {
-        $this->Description = $Description;
-
-        return $this;
+        $this->description = $description;
     }
+
 
     public function getPvUser(): ?User
     {
-        return $this->pv_user;
+        return $this->pvUser;
     }
 
-    public function setPvUser(?User $pv_user): self
+
+    public function setPvUser(?User $pvUser): void
     {
-        $this->pv_user = $pv_user;
-
-        return $this;
+        $this->pvUser = $pvUser;
     }
+
+
 }

@@ -1,0 +1,71 @@
+
+
+
+{% block body %}
+
+    <h1 style="color:DodgerBlue;"><center>Grille d'évaluation de l'étudiant {{ grille.getGrilleEtudiant().getUserName() }}</center></h1>
+
+    <table class="table" style="width: 100%; border: 1px solid black" >
+        <tbody>
+        <tr>
+            <th style="border: 1px solid black"; align="left">Id</th>
+            <td style="border: 1px solid black">{{ grille.id }}</td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid black"; align="left">Etudiant</th>
+            <td style="border: 1px solid black">{{ grille.getGrilleEtudiant().getUserName() }}</td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid black"; align="left">Encadrant académique</th>
+            <td style="border: 1px solid black">{{ grille.getEncAcademique().getUserName() }}</td>
+        </tr>
+        <tr>
+            <th  style="border: 1px solid black"; align="left">Date de remplissage</th>
+            <td  style="border: 1px solid black">{{ grille.dateremp ? grille.dateremp|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th  style="border: 1px solid black"; align="left">Mention</th>
+            <td style="border: 1px solid black">{{ grille.mention }}</td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid black"; align="left">Note</th>
+            <td style="border: 1px solid black">{{ grille.note }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black"; align="left">Comprendre et intégrer les enjeux et la stratégie de l’entreprise</td>
+            <td style="border: 1px solid black">{{ grille.q1 }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black"; align="left">Analyser et/ou chercher les solutions à un problème de conception, de réalisation, d’amélioration de produit</td>
+            <td style="border: 1px solid black">{{ grille.q2 }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black"; align="left">Conduire un projet de création, de conception, de réalisation, d’amélioration de produit, de système ou de service </td>
+            <td style="border: 1px solid black">{{ grille.q3 }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black"; align="left">Mettre en œuvre sa maîtrise scientifique ou technique au sein de l’organisation </td>
+            <td style="border: 1px solid black">{{ grille.q4 }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black"; align="left">Organiser sa mission et manager les ressources</td>
+            <td style="border: 1px solid black">{{ grille.q5 }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black"; align="left">Qualité et présentation du document</td>
+            <td style="border: 1px solid black">{{ grille.q6 }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black"; align="left">Qualité de la présentation orale</td>
+            <td style="border: 1px solid black">{{ grille.q7 }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black"; align="left">Qualité de l’argumentation</td>
+            <td style="border: 1px solid black">{{ grille.q8 }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}
+

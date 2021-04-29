@@ -1,0 +1,54 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Soutenance index{% endblock %}
+
+{% block body %}
+    <h1>Soutenance index</h1>
+    {{ form_start(form) }}
+    <div class="form-row align-items-end" >
+        <div class="col">
+            {{ form_row(form.president) }}
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Rechercher</button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>President</th>
+                <th>Etudiant</th>
+                <th>Encadrant</th>
+                <th>Date_soutenance</th>
+                <th>Salle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for soutenance in soutenances %}
+            <tr>
+                <td>{{ soutenance.id }}</td>
+                <td>{{ soutenance.president }}</td>
+                <td>{{ soutenance.getSoutEtud().getUserName() }}</td>
+                <td>{{ soutenance.getSoutEncAc().getUserName() }}</td>
+                <td>{{ soutenance.dateSoutenance ? soutenance.dateSoutenance|date('Y-m-d') : '' }}</td>
+                <td>{{ soutenance.salle }}</td>
+                <td>
+                    <a href="{{ path('soutenance_crud_show', {'id': soutenance.id}) }}">show</a>
+                    <a href="{{ path('soutenance_crud_edit', {'id': soutenance.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('soutenance_crud_new') }}">Create new</a>
+{% endblock %}

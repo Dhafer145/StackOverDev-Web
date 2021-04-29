@@ -1,0 +1,52 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Evaluation index{% endblock %}
+
+{% block body %}
+    <h1>Evaluations mi-parcours</h1>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+
+                <th>Encadrant</th>
+                <th>Etudiant</th>
+                <th>Date de remplissage</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evaluation in evaluations %}
+            <tr>
+                <td>{{ evaluation.id }}</td>
+
+
+                <td>{{ evaluation.getIdEncEntreprise().getUserName() }}</td>
+                <td>{{ evaluation.getEvalEtudiant().getUserName() }}</td>
+
+                <td>{{ evaluation.dateremp ? evaluation.dateremp|date('Y-m-d') : '' }}</td>
+
+                <td>
+                    <a href="{{ path('evaluation_show_back', {'id': evaluation.id}) }}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation" style="margin:20px;">
+        {{ knp_pagination_render(evaluations) }}
+    </div>
+
+
+{% endblock %}

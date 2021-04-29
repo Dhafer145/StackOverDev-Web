@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ReponsesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ReponsesRepository::class)
@@ -18,21 +20,29 @@ class Reponses
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $rep;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Questions::class, inversedBy="reps_question")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $rep_de_quest;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="etud_reps")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $reps_etud;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Questions::class, inversedBy="lesreponses_dequestion")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $question_des_reponses;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $IndexPeriode;
+
 
     public function getId(): ?int
     {
@@ -51,17 +61,7 @@ class Reponses
         return $this;
     }
 
-    public function getRepDeQuest(): ?Questions
-    {
-        return $this->rep_de_quest;
-    }
 
-    public function setRepDeQuest(?Questions $rep_de_quest): self
-    {
-        $this->rep_de_quest = $rep_de_quest;
-
-        return $this;
-    }
 
     public function getRepsEtud(): ?User
     {
@@ -74,4 +74,32 @@ class Reponses
 
         return $this;
     }
+
+    public function getQuestionDesReponses(): ?Questions
+    {
+        return $this->question_des_reponses;
+    }
+
+    public function setQuestionDesReponses(?Questions $question_des_reponses): self
+    {
+        $this->question_des_reponses = $question_des_reponses;
+
+        return $this;
+    }
+
+    public function getIndexPeriode(): ?int
+    {
+        return $this->IndexPeriode;
+    }
+
+    public function setIndexPeriode(int $IndexPeriode): self
+    {
+        $this->IndexPeriode = $IndexPeriode;
+
+        return $this;
+    }
+
+
+
+
 }

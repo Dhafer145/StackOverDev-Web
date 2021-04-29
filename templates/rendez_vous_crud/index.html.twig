@@ -1,0 +1,67 @@
+{% extends 'base_encadrant_ac.html.twig' %}
+
+{% block title %}Rendez Vous{% endblock %}
+
+{% block body %}
+    <h1>Rendez Vous</h1>
+    <input class="form-control" type="search" id="search" placeholder="Search by Nom">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User_name</th>
+                <th>Lieu</th>
+                <th>Date</th>
+                <th>Raison</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="all">
+        {% for rendez_vou in rendez_vouses %}
+            <tr>
+                <td>{{ rendez_vou.id }}</td>
+                <td>{{ rendez_vou.userName }}</td>
+                <td>{{ rendez_vou.lieu }}</td>
+                <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d') : '' }}</td>
+                <td>{{ rendez_vou.raison }}</td>
+                <td>
+                    <a href="{{ path('rendez_vous_c_r_u_d_show', {'id': rendez_vou.id}) }}" class = "btn btn-check">AFFICHER </a>
+                    <a href="{{ path('rendez_vous_c_r_u_d_edit', {'id': rendez_vou.id}) }}" class = "btn btn-dark">EDITER</a>
+                    <a href="{{ path('printPDF') }}" class = "btn btn-check">IMPRIMER </a>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script>
+                        $( document ).ready(function() {
+                            var currentRequest = null;
+                            $("#search").keyup(function(e){
+                                var value = $(this).val();
+                                if(currentRequest != null) {
+                                    currentRequest.abort();
+                                }
+                                currentRequest = $.ajax({
+                                    url : "{{ path('rechercheRV') }}",
+                                    type : 'GET',
+                                    data: {
+                                        'searchValue' : value
+                                    },
+                                    success : function(retour)
+                                    {
+                                        $('#all').html(retour);
+                                    },
+                                });
+                                return false;
+                            });
+                        });
+                    </script>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('rendez_vous_c_r_u_d_new') }}" class = "btn btn-check">Ajouter un rendez_vous</a>
+{% endblock %}
+

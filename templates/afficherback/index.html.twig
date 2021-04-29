@@ -1,0 +1,34 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Rendez Vous{% endblock %}
+
+{% block body %}
+    <h1>Rendez Vous</h1>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>User_name</th>
+            <th>Lieu</th>
+            <th>Date</th>
+            <th>Raison</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for rendez_vou in rendez_vouses %}
+            <tr>
+                <td>{{ rendez_vou.id }}</td>
+                <td>{{ rendez_vou.userName }}</td>
+                <td>{{ rendez_vou.lieu }}</td>
+                <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d') : '' }}</td>
+                <td>{{ rendez_vou.raison }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

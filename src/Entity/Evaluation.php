@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EvaluationRepository;
+use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -79,10 +81,16 @@ class Evaluation
     private $id_enc_entreprise;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="etudiant_ev", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="etudiant_ev", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $eval_etudiant;
+
+    public  function __construct()
+    {
+        $this->dateremp=new DateTime();
+
+    }
 
     public function getId(): ?int
     {

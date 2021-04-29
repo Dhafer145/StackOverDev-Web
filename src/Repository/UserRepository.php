@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DoctrineExtensions\Query\Mysql\DateDiff;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,62 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public  function rechercheUser($name)
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.user_name LIKE :nom')
+            ->setParameter('nom', '%'.$name.'%')
+            ->getQuery()
+            ->getResult();
+
+    }
+    public function countStartDeadlineUser($val){
+        $date =  new \DateTime();
+        $newDate = date_format($date, 'Y-m-d');
+        return $this->createQueryBuilder('u')
+            ->select('DATE_DIFF(DATE_ADD(u.debut_stage, 6, \'WEEK\'),:today)' )
+            ->where('u.id = :val')
+            ->setParameter('val', $val)
+            ->setParameter('today',$newDate)
+            ->getQuery()
+            ->getResult();
+
+
+    }
+    public function countMiddleDeadlineUser($val){
+        $date =  new \DateTime();
+        $newDate = date_format($date, 'Y-m-d');
+        return $this->createQueryBuilder('u')
+            ->select('DATE_DIFF(DATE_ADD(u.debut_stage, 14, \'WEEK\'),:today)' )
+            ->where('u.id = :val')
+            ->setParameter('val', $val)
+            ->setParameter('today',$newDate)
+            ->getQuery()
+            ->getResult();
+
+
+    }
+    public function countEndDeadlineUser($val){
+        $date =  new \DateTime();
+        $newDate = date_format($date, 'Y-m-d');
+        return $this->createQueryBuilder('u')
+            ->select('DATE_DIFF(DATE_ADD(u.debut_stage, 23, \'WEEK\'),:today)' )
+            ->where('u.id = :val')
+            ->setParameter('val', $val)
+            ->setParameter('today',$newDate)
+            ->getQuery()
+            ->getResult();
+
+
+    }
+
+    public function findUsersByReponses(){
+        return $this->createQueryBuilder('u')
+            ->select('u','r')
+            ->leftJoin('u.etud_reps', 'r')
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

@@ -1,0 +1,18 @@
+{% for rendez_vou in rendez_vouses %}
+    <tr>
+        <td>{{ rendez_vou.id }}</td>
+        <td>{{ rendez_vou.userName }}</td>
+        <td>{{ rendez_vou.lieu }}</td>
+        <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d') : '' }}</td>
+        <td>{{ rendez_vou.raison }}</td>
+        <td>
+            <a href="{{ path('rendez_vous_c_r_u_d_show', {'id': rendez_vou.id}) }}" class = "btn btn-check">AFFICHER </a>
+            <a href="{{ path('rendez_vous_c_r_u_d_edit', {'id': rendez_vou.id}) }}" class = "btn btn-dark">EDITER</a>
+            <a href="{{ path('printPDF') }}" class = "btn btn-check">IMPRIMER </a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="6">no records found</td>
+    </tr>
+{% endfor %}

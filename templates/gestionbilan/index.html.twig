@@ -1,0 +1,37 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}gestion des bilans{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="text-dark font-weight-bold m-0">Gestion Des Bilans Periodiques</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <h5 class="mb-0"><strong><a href="{{ path('visualisation_bilan') }}">Visualisation des bilans</a>
+                            </strong></h5><span class="text-xs">Visualiser les bilans periodiques renseignés des etudiants</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <h5 class="mb-0"><strong><a href="{{ path('questions_index') }}" class="text-danger">Gérer les questions </a>
+                            </strong></h5><span class="text-xs">Visualiser et manipuler les questions des bilans</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <h5 class="mb-0 " ><strong><a href="{{ path('bilan_stats') }}" class="text-success">Statistique</a>
+                            </strong></h5><span class="text-xs">Diagramme circulaire pour comparer les nombres des questions </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

@@ -36,6 +36,9 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="navigation" style="margin:20px;">
+        {{ knp_pagination_render(compte_rendus) }}
+    </div>
 
     <a href="{{ path('compte_rendu_new') }}">Create new</a>
 {% endblock %}

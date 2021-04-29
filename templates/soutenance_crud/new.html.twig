@@ -1,0 +1,11 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}New Soutenance{% endblock %}
+
+{% block body %}
+    <h1>Create new Soutenance</h1>
+
+    {{ include('soutenance_crud/_form.html.twig') }}
+
+    <a href="{{ path('soutenance_crud_index') }}">back to list</a>
+{% endblock %}

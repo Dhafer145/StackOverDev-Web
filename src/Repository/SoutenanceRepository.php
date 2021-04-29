@@ -47,4 +47,15 @@ class SoutenanceRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public  function prerecherche($name)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.president LIKE :president')
+            ->setParameter('president', '%'.$name.'%')
+            ->getQuery()
+            ->getResult();
+
+    }
+
 }

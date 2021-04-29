@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SoutenanceRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,34 +20,38 @@ class Soutenance
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull(message="Veuillez saisir le nom du président" )
      */
     private $president;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotNull(message="Veuillez saisir la date" )
      */
     private $date_soutenance;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Assert\NotNull(message="Veuillez saisir une salle" )
      */
     private $salle;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sout_rs")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $soutenancers;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sout_enc_ac")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull(message="Veuillez saisir un encadrant" )
      */
     private $sout_enc_ac;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="etud_sout", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="etud_sout", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull(message="Veuillez saisir un étudiant" )
      */
     private $sout_etud;
 

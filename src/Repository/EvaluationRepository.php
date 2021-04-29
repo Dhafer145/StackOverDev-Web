@@ -19,6 +19,23 @@ class EvaluationRepository extends ServiceEntityRepository
         parent::__construct($registry, Evaluation::class);
     }
 
+    public function tridesc()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.dateremp', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function triasc()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.dateremp', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
     // /**
     //  * @return Evaluation[] Returns an array of Evaluation objects
     //  */

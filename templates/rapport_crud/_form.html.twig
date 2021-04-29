@@ -1,0 +1,32 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+<div class="form-group">
+    <div>
+        <label for="">Plagiat</label>
+        <td> {{form_widget(form.plagiat)}}</td>
+        <td class="form-control"> {{form_widget(form.plagiat)}}</td>
+        <td class="form-control "> {{form_errors(form.plagiat)}}</td>
+    </div>
+
+
+    <div>
+        <label for="">Choisir etudiant</label>
+        <td> {{form_widget(form.rapp_etudiant)}}</td>
+        <td class="form-control"> {{form_widget(form.rapp_etudiant)}}</td>
+        <td class="form-control "> {{form_errors(form.rapp_etudiant)}}</td>
+    </div>
+
+    <div>
+        <label for="">Choisir un encadrant</label>
+        <td> {{form_widget(form.enc_ac_correction)}}</td>
+        <td class="form-control"> {{form_widget(form.enc_ac_correction)}}</td>
+        <td class="form-control "> {{form_errors(form.enc_ac_correction)}}</td>
+    </div>
+</div>
+
+
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

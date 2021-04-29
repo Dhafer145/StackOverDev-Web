@@ -1,0 +1,56 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Grilles d'évaluation{% endblock %}
+
+{% block body %}
+    <h1>Grilles d'évaluation</h1>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Encadrant</th>
+                <th>Etudiant</th>
+
+                <th>Date de remplissage</th>
+                <th>Mention</th>
+                <th>Note</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grille in grilles %}
+            <tr>
+                <td>{{ grille.id }}</td>
+
+                <td>{{ grille.getEncAcademique().getUserName() }}</td>
+                <td>{{ grille.getGrilleEtudiant().getUserName() }}</td>
+
+
+                <td>{{ grille.dateremp ? grille.dateremp|date('Y-m-d') : '' }}</td>
+                <td>{{ grille.mention }}</td>
+                <td>{{ grille.note }}</td>
+
+                <td>
+                    <a href="{{ path('grille_show_back', {'id': grille.id}) }}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation" style="margin:20px;">
+        {{ knp_pagination_render(grilles) }}
+    </div>
+
+
+{% endblock %}
