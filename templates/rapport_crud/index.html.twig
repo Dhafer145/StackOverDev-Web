@@ -10,6 +10,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Etudiant</th>
                 <th>Plagiat</th>
                 <th>Fichier</th>
                 <th>actions</th>
@@ -19,8 +20,9 @@
         {% for rapport_final in rapport_finals %}
             <tr>
                 <td>{{ rapport_final.id }}</td>
+                <td>{{ rapport_final.getRappEtudiant().getUserName() }}</td>
                 <td>{{ rapport_final.plagiat }}</td>
-                <td>{{ rapport_final.fichier }}</td>
+                <td>{{ rapport_final.imageName }}</td>
                 <td>
                     <a href="{{ path('rapport_crud_show', {'id': rapport_final.id}) }}">show</a>
                   <a href="{{ path('rapport_crud_edit', {'id': rapport_final.id}) }}">edit</a>

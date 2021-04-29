@@ -42,7 +42,7 @@ class SoutenanceCrudController extends AbstractController
     /**
      * @Route("/new", name="soutenance_crud_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request ,\Swift_Mailer $mailer ): Response
     {
         $soutenance = new Soutenance();
         $form = $this->createForm(SoutenanceType::class, $soutenance);
@@ -52,6 +52,19 @@ class SoutenanceCrudController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($soutenance);
             $entityManager->flush();
+
+
+            $message=(new \Swift_Message('soutenance'))
+                ->setFrom("azeaz@azeaz.com")
+                ->setTo($soutenance->getSoutEtud()->getEmail())
+
+
+                ->setBody("votre soutenance a été ajouté ",
+                    'text/html');
+
+            $mailer->send($message);
+
+
 
             return $this->redirectToRoute('soutenance_crud_index');
         }
@@ -105,4 +118,6 @@ class SoutenanceCrudController extends AbstractController
 
         return $this->redirectToRoute('soutenance_crud_index');
     }
+
+
 }

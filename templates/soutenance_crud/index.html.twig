@@ -21,6 +21,8 @@
             <tr>
                 <th>Id</th>
                 <th>President</th>
+                <th>Etudiant</th>
+                <th>Encadrant</th>
                 <th>Date_soutenance</th>
                 <th>Salle</th>
                 <th>actions</th>
@@ -31,6 +33,8 @@
             <tr>
                 <td>{{ soutenance.id }}</td>
                 <td>{{ soutenance.president }}</td>
+                <td>{{ soutenance.getSoutEtud().getUserName() }}</td>
+                <td>{{ soutenance.getSoutEncAc().getUserName() }}</td>
                 <td>{{ soutenance.dateSoutenance ? soutenance.dateSoutenance|date('Y-m-d') : '' }}</td>
                 <td>{{ soutenance.salle }}</td>
                 <td>

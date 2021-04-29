@@ -26,10 +26,7 @@ class SoutenanceType extends AbstractType
                     'C01',
                    ]])
 
-            ->add('soutenancers',EntityType::class,[
-        'class'=>User::class,
-        'choice_label'=>'user_name'
-    ])
+
 
             ->add('sout_enc_ac',EntityType::class,[
         'class'=>User::class,

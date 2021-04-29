@@ -38,8 +38,6 @@ class Soutenance
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sout_rs")
-     * @ORM\JoinColumn(nullable=false)
-     *  @Assert\NotNull(message="Veuillez saisir un rapporteur" )
      */
     private $soutenancers;
 
@@ -51,7 +49,7 @@ class Soutenance
     private $sout_enc_ac;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="etud_sout", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="etud_sout", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull(message="Veuillez saisir un étudiant" )
      */

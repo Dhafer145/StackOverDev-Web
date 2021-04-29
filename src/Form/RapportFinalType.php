@@ -9,6 +9,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+
 
 class RapportFinalType extends AbstractType
 {
@@ -16,7 +18,7 @@ class RapportFinalType extends AbstractType
     {
         $builder
             ->add('plagiat')
-            ->add('fichier')
+            ->add('imageFile',VichImageType::class)
 
             ->add('rapp_etudiant',EntityType::class,[
             'class'=>User::class,

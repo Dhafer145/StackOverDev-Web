@@ -23,4 +23,19 @@ class SoutenanceBackController extends AbstractController
 
         ]);
     }
+
+    /**
+     *@Route ("/recherchepre",name="recherchepre")
+     */
+    public function rechercheajax (Request $request ,SoutenanceRepository $repository)
+    {
+        $repository=$this->getDoctrine()->getRepository(Soutenance::class);
+        $requestString=$request->get('searchValue');
+        $pre=$repository->prerecherche($requestString);
+        return $this->render('soutenance_back/president.html.twig',
+            ['soutenances'=>$pre]
+
+        );
+
+    }
 }
